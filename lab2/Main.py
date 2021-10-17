@@ -19,12 +19,13 @@ def chart_samples():
     chart.next_subplot()
     chart.draw_line((1, 1), (3, 4))
     chart.next_subplot()
+    chart.clear_axes()
     chart.show()
 
 def main():
     decision_system = DecisionSystem(name="iris")
     decision_system.read_data("data/iris-data", 'data/attributes')
-    # chart_samples()
+    chart_samples()
     # decision_system.get_all_data()
     # print(decision_system.get_data(1))
     # print(decision_system.get_value(0, 2))

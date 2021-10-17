@@ -13,8 +13,8 @@ class Chart:
         self.styles = ['r--', 'b-', 'k-', 'g--', 'y-', 'co', 'm-', 'k--', 'b--', 'r-']
         self.style_number = 0
 
-    def clear(self):
-        self.ax.cla()
+    def clear_axes(self):
+        plot.cla()
 
     def show(self):
         plot.show()
