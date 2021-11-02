@@ -10,7 +10,6 @@ class Chart:
         self.max_subplots = self.subplot_x * self.subplot_y
         plot.subplot(self.subplot_x, self.subplot_y, 1)
         self.current_subplot = 1
-        self.styles = ['r--', 'b-', 'k-', 'g--', 'y-', 'co', 'm-', 'k--', 'b--', 'r-']
         self.style_number = 0
 
     def clear_axes(self):
@@ -30,7 +29,8 @@ class Chart:
         plot.ylabel(y)
 
     def get_style(self):
-        return self.styles[self.style_number % 10]
+        styles = ['r--', 'b-', 'k-', 'g--', 'y-', 'co', 'm-', 'k--', 'b--', 'r-']
+        return styles[self.style_number % 10]
 
 
     def next_subplot(self):
@@ -67,3 +67,6 @@ class Chart:
             self.style_number += 1
         plot.plot([start[0], end[0]], [start[1], end[1]], style)
         plot.draw()
+
+    def draw_face(self):
+        pass
