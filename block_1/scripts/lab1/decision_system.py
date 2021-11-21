@@ -1,6 +1,6 @@
 from typing import List
 from .Row import Row
-import os
+
 
 class DecisionSystem:
     __data: List[Row]
@@ -9,8 +9,13 @@ class DecisionSystem:
         self.__data = []
         self.name = name
 
-    # funkcja czytająca dane z plików i przygotowująca set danych
     def read_data(self, values_file: str, attributes_file: str):
+        """Read data from file and prepare data set
+
+        :param values_file:
+        :param attributes_file:
+        :return:
+        """
         values_list = open(values_file, 'r')
         attributes_list = open(attributes_file, 'r')
         attributes_types: List[bool] = []
@@ -27,6 +32,13 @@ class DecisionSystem:
 
     # funkcja czytające atrybuty i sprawdzająca czy są atrybutem klasowym
     def __read_attributes(self, attributes_list: str, attributes_types: List[bool], attributes_names: List[str]):
+        """Check if attributes are class attributes
+
+        :param attributes_list: List
+        :param attributes_types: List
+        :param attributes_names: List
+        :return:
+        """
         for att in attributes_list:
             attribute = att.split()
             attributes_names.append(attribute[0])
@@ -35,17 +47,30 @@ class DecisionSystem:
             else:
                 attributes_types.append(False)
 
-    # funkcja wyświetlająca wszystkie próbki danych
     def get_all_data(self) -> List[Row]:
+        """Print all samples
+
+        :return: data
+        """
         for i in self.__data:
             print(i)
 
-    # funkcja wyświetlająca podaną wartość podanej próbki
     def get_value(self, index: int, data: int):
+        """Print value of sample
+
+        :param index: int
+        :param data: int
+        :return:
+        """
         print(self.__data[index].get_value(data))
 
     # funkcja wyświetlająca podaną próbkę
     def get_data(self, index: int):
+        """Print sample data
+
+        :param index:
+        :return:
+        """
         print(self.__data[index])
 
     def __str__(self):

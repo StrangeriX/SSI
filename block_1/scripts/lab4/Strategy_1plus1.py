@@ -5,29 +5,30 @@ from typing import Tuple
 from block_1.scripts.Chart import Chart
 
 
-class Strategy_1plus1:
-    zakres_zmienności = [0.0, 100.0]
+class OnePlusOneStrategy:
 
-    def __init__(self, rozrzut: float, wsp_przyrostu: float, n: int):
-        self.rozrzut = np.linspace(-rozrzut, rozrzut, 100)
-        self.wsp_przyrostu = wsp_przyrostu
+    def __init__(self, dispersion: float, increment_factor: float, scope_range: Tuple[float, float], n: int):
+        self.dispersion = np.linspace(-dispersion, dispersion, 100)
+        self.increment_factor = increment_factor
         self.n = n
+        self.scope_range = scope_range
 
     end_point: Tuple[float, float]
     points_x = []
     points_y = []
     iterator = 0
-    points_names =[]
-    zakres = np.linspace(zakres_zmienności[0], zakres_zmienności[1])
+    points_names = []
 
-    def start(self):
-        x = random.choices(self.zakres)[0]
+    def execute(self):
+        scope = np.linspace(self.scope_range[0], self.scope_range[1], 100)
+        x = random.choices(scope)[0]
+        print(x)
         y = self.get_function_value(x)
         self.add_point(x, y)
         for i in range(self.n):
-            tmp = random.choices(self.rozrzut)[0]
+            tmp = random.choices(self.dispersion)[0]
             xPot = x + tmp
-            if xPot > self.zakres_zmienności[1] or xPot < self.zakres_zmienności[0]:
+            if xPot > self.scope_range[1] or xPot < self.scope_range[0]:
                 new_scope = np.linspace(xPot-0.5, xPot+0.5)
                 xPot = random.choices(new_scope)[0]
             else:
@@ -36,14 +37,23 @@ class Strategy_1plus1:
                     x, y = xPot, yPot
                     self.add_point(x, y)
                 else:
-                    self.rozrzut -= self.wsp_przyrostu
-            # print(f"{i}: ({x}, {y}), ({self.rozrzut[0]}, {self.rozrzut[-1]})")
+                    self.dispersion -= self.increment_factor
+            print(f"{i}: ({x}, {y}), ({self.dispersion[0]}, {self.dispersion[-1]})")
         self.end_point = (x, y)
 
     def get_function_value(self, x):
+        """Calculates value of function for x
+
+        :param x:
+        :return: f(x)
+        """
         return math.sin(x / 10) * math.sin(x / 200)
 
     def show_chart(self):
+        """Creating chart for function and points
+
+        :return: plot
+        """
         chart = Chart((1, 1))
         chart.labels("wartość X", "wartość Y")
         x = np.linspace(0, 100, 200)
@@ -55,5 +65,11 @@ class Strategy_1plus1:
         chart.show()
 
     def add_point(self, x, y):
+        """Adding point values to lists
+
+        :param x:
+        :param y:
+        :return:
+        """
         self.points_x.append(x)
         self.points_y.append(y)

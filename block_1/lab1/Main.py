@@ -1,5 +1,5 @@
 import os
-from block_1.scripts.lab1.DecisionSystem import DecisionSystem
+from block_1.scripts.lab1.decision_system import DecisionSystem
 
 
 def main():
