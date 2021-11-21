@@ -1,5 +1,4 @@
 from scripts.DataSet import DataSet
-from scripts.KMeans import KMeans
 import os
 
 def main():
