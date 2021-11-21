@@ -37,7 +37,6 @@ class Chart:
         if self.current_subplot >= self.max_subplots:
             self.current_subplot = 1
             plot.subplot(self.subplot_x, self.subplot_y, 1)
-
         else:
             self.current_subplot += 1
             plot.subplot(self.subplot_x, self.subplot_y, self.current_subplot)
@@ -47,9 +46,10 @@ class Chart:
             plot.scatter(x, y, c=color)
         else:
             plot.scatter(x, y)
+
         plot.draw()
 
-    def draw_many_points(self, x: List[float], y: List[float], name: Optional[str] = None):
+    def draw_many_points(self, x: List[float], y: List[float], name: Optional[str] = None, point_name: Optional[List[str]] = None):
         if name:
             if len(x) == len(y):
                 plot.scatter(x, y, label=name)
@@ -63,7 +63,10 @@ class Chart:
                 plot.draw()
             else:
                 raise Exception("Number of x is not same as number of y")
-
+        if point_name:
+            plot.scatter(x, y)
+            for i, txt in enumerate(point_name):
+                plot.annotate(txt, (x[i], y[i]))
     def draw_line(self, start: Tuple[float, float], end: Tuple[float, float], style: str = ''):
         if not style:
             style = self.get_style()

@@ -9,8 +9,8 @@ def main():
     # lab1.main()
     # lab2.main()
     # lab3.main()
-    # lab4.main()
-    lab5.main()
+    lab4.main()
+    # lab5.main()
 
 
 if __name__ == "__main__":
