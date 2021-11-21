@@ -1,6 +1,6 @@
 from typing import List
 from .Row import Row
-
+import os
 
 class DecisionSystem:
     __data: List[Row]

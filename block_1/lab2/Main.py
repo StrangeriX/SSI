@@ -1,6 +1,5 @@
-from scripts.DecisionSystem import DecisionSystem
-from scripts.Chart import Chart
-import os
+from block_1.scripts.lab2.DecisionSystem import DecisionSystem
+from block_1.scripts.Chart import Chart
 
 
 def chart_samples():
@@ -27,9 +26,8 @@ def chart_samples():
     chart.show()
 
 def main():
-    print(os.listdir('lab2'))
     decision_system = DecisionSystem(name="iris")
-    decision_system.read_data("lab2/data/iris-data", 'lab2/data/attributes')
+    decision_system.read_data("block_1/data/irys-data.txt", 'block_1/data/attributes.txt')
     # chart_samples()
     # decision_system.get_all_data()
     # print(decision_system.get_data(1))

@@ -1,10 +1,10 @@
 import os
-from scripts.DecisionSystem import DecisionSystem
+from block_1.scripts.lab1.DecisionSystem import DecisionSystem
 
 
 def main():
     decision_system = DecisionSystem(name="iris")
-    decision_system.read_data("data/iris-data", 'data/attributes')
+    decision_system.read_data("block_1/data/irys-data.txt", 'block_1/data/attributes.txt')
     # decision_system.get_all_data()
     # print(decision_system.get_data(1))
     print(decision_system.get_value(0, 2))

@@ -42,8 +42,11 @@ class Chart:
             self.current_subplot += 1
             plot.subplot(self.subplot_x, self.subplot_y, self.current_subplot)
 
-    def draw_point(self, x: float, y: float):
-        plot.scatter(x, y)
+    def draw_point(self, x: float, y: float, color: Optional[str] = None):
+        if color:
+            plot.scatter(x, y, c=color)
+        else:
+            plot.scatter(x, y)
         plot.draw()
 
     def draw_many_points(self, x: List[float], y: List[float], name: Optional[str] = None):
@@ -66,6 +69,10 @@ class Chart:
             style = self.get_style()
             self.style_number += 1
         plot.plot([start[0], end[0]], [start[1], end[1]], style)
+        plot.draw()
+
+    def draw_function(self, scope, function):
+        plot.plot(scope, function)
         plot.draw()
 
     def draw_face(self):
