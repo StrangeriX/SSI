@@ -1,7 +1,8 @@
-
+from block_1.scripts.lab4a.strategy_mu_plus_lambda import MuPlusLambdaStrategy
 
 def main():
-    print("lab 5")
+    mulambda = MuPlusLambdaStrategy((0, 100), 20, 4, 10, 2, 10)
+    mulambda.execute()
 
 
 if __name__ == "__main__":

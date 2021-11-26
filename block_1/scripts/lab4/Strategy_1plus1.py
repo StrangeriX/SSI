@@ -27,21 +27,22 @@ class OnePlusOneStrategy:
         self.add_point(x, y)
         for i in range(self.n):
             tmp = random.choices(self.dispersion)[0]
-            xPot = x + tmp
-            if xPot > self.scope_range[1] or xPot < self.scope_range[0]:
-                new_scope = np.linspace(xPot-0.5, xPot+0.5)
-                xPot = random.choices(new_scope)[0]
+            x_pot = x + tmp
+            if x_pot > self.scope_range[1] or x_pot < self.scope_range[0]:
+                new_scope = np.linspace(x_pot-0.5, x_pot+0.5)
+                x_pot = random.choices(new_scope)[0]
             else:
-                yPot = self.get_function_value(xPot)
-                if yPot >= y:
-                    x, y = xPot, yPot
+                y_pot = self.get_function_value(x_pot)
+                if y_pot >= y:
+                    x, y = x_pot, y_pot
                     self.add_point(x, y)
                 else:
                     self.dispersion -= self.increment_factor
             print(f"{i}: ({x}, {y}), ({self.dispersion[0]}, {self.dispersion[-1]})")
         self.end_point = (x, y)
 
-    def get_function_value(self, x):
+    @staticmethod
+    def get_function_value(x):
         """Calculates value of function for x
 
         :param x:
