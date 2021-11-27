@@ -67,6 +67,7 @@ class Chart:
             plot.scatter(x, y)
             for i, txt in enumerate(point_name):
                 plot.annotate(txt, (x[i], y[i]))
+
     def draw_line(self, start: Tuple[float, float], end: Tuple[float, float], style: str = ''):
         if not style:
             style = self.get_style()

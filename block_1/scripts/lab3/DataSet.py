@@ -2,7 +2,7 @@ from typing import List, Tuple, Optional
 from numpy import sqrt
 import random
 from .Row import Row
-
+from block_1.scripts.Chart import Chart
 import os
 
 

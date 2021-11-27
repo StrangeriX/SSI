@@ -13,6 +13,7 @@ class Sample:
         self.x1 = x1
         self.x2 = x2
         self.value = self.calculate_value(x1, x2)
+        self.correct_jump = 5
 
     @staticmethod
     def calculate_value(x1: float, x2: float):
@@ -24,8 +25,16 @@ class Sample:
     def __str__(self):
         return f"(x1, x2) = ({self.x1}, {self.x2}), value = {self.value}\n"
 
-    def mutate(self, mutation_level):
+    def mutate(self, mutation_level, scope_range):
         mutation = np.linspace(-mutation_level, mutation_level, 100)
-        mutate_level = random.choice(mutation)
-        mutated_sample = Sample(self.x1+mutate_level, self.x2+mutate_level)
-        return mutated_sample
+        self.x1 += random.choice(mutation)
+        if self.x1 > scope_range[1]:
+            self.x1 -= self.correct_jump
+        elif self.x1 < scope_range[0]:
+            self.x1 += self.correct_jump
+        self.x2 += random.choice(mutation)
+        if self.x2 > scope_range[1]:
+            self.x2 -= self.correct_jump
+        elif self.x2 < scope_range[0]:
+            self.x2 += self.correct_jump
+        self.value = self.calculate_value(self.x1, self.x2)

@@ -1,8 +1,9 @@
 import numpy as np
 from typing import Tuple
-import math
+import copy
 import random
 from block_1.scripts.lab4a.sample import Sample
+from block_1.scripts.Chart import Chart
 
 
 class MuPlusLambdaStrategy:
@@ -18,44 +19,53 @@ class MuPlusLambdaStrategy:
         self.mutation_level = scope_range[1] / mutation_level
 
     def execute(self):
+        chart = Chart((1, 1))
         for _ in range(self.mu):
             self.parents.append(self.create_new_sample())
-        print("przed zmianami")
-        self.get_parents()
         for i in range(self.n):
+            # wyświetlanie
+            x1 = []
+            x2 = []
+            for i in self.parents:
+                x1.append(i.x1)
+                x2.append(i.x2)
+            chart.draw_many_points(x1, x2, name="parent")
+            # .........
             new_generation = []
             for _ in range(self.lambda_value):
-                winner = self.do_tournament()
-                new_sample = winner.mutate(self.mutation_level)
-                if new_sample not in new_generation:
-                    new_generation.append(new_sample)
+                winner = self.do_tournament(self.parents)
+                winner.mutate(self.mutation_level, (self.scope_range[0], self.scope_range[-1]))
+                new_generation.append(winner)
+
             full_generation = self.parents + new_generation
             new_parents = []
             for _ in range(self.mu):
-                parent = full_generation[0]
-                for sample in full_generation:
-                    if sample.get_value() > parent.get_value():
-                        parent = sample
-                new_parents.append(parent)
-                full_generation.remove(parent)
+                new_parent = self.do_tournament(full_generation)
+                new_parents.append(new_parent)
+
+            # wyswietlanie
+            x1 = []
+            x2 = []
+            for i in new_generation:
+                x1.append(i.x1)
+                x2.append(i.x2)
+            chart.draw_many_points(x1, x2, "dzieci")
+            chart.show()
+            # .................
             self.parents = new_parents
-            print("po zmianach")
-            self.get_parents()
 
     def create_new_sample(self):
-        x1 = random.choices(self.scope_range)[0]
-        x2 = random.choices(self.scope_range)[0]
+        x1 = random.choice(self.scope_range)
+        x2 = random.choice(self.scope_range)
         parent = Sample(x1, x2)
         return parent
 
-    def do_tournament(self):
+    def do_tournament(self, generation):
         new_tournament = []
         for i in range(self.tournament_size):
-            sample = random.choice(self.parents)
-            if sample not in new_tournament:
-                new_tournament.append(sample)
-            else:
-                i -= 1
+            sample = random.choice(generation)
+            child = copy.deepcopy(sample)
+            new_tournament.append(child)
         winner = new_tournament[0]
         for i in new_tournament:
             if i.get_value() > winner.get_value():
@@ -65,4 +75,3 @@ class MuPlusLambdaStrategy:
     def get_parents(self):
         for i in self.parents:
             print(i)
-
