@@ -44,22 +44,29 @@ class Chart:
     def draw_point(self, x: float, y: float, color: Optional[str] = None):
         if color:
             plot.scatter(x, y, c=color)
+            plot.legend()
         else:
             plot.scatter(x, y)
 
         plot.draw()
 
-    def draw_many_points(self, x: List[float], y: List[float], name: Optional[str] = None, point_name: Optional[List[str]] = None):
-        if name:
+    def draw_many_points(self, x: List[float], y: List[float], name: Optional[str] = None, point_name: Optional[List[str]] = None, color: Optional[str] = None, size: int = None):
+        if name and color:
             if len(x) == len(y):
-                plot.scatter(x, y, label=name)
+                plot.scatter(x, y, label=name, c=color, s=size)
                 plot.legend()
+                plot.draw()
+            else:
+                raise Exception("Number of x is not same as number of y")
+        elif name:
+            if len(x) == len(y):
+                plot.scatter(x, y, c=color)
                 plot.draw()
             else:
                 raise Exception("Number of x is not same as number of y")
         else:
             if len(x) == len(y):
-                plot.scatter(x, y)
+                plot.scatter(x, y, c=color)
                 plot.draw()
             else:
                 raise Exception("Number of x is not same as number of y")
