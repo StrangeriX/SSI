@@ -1,4 +1,4 @@
-from block_1.scripts.lab3.DataSet import DataSet
+from scripts.lab3.DataSet import DataSet
 
 def main():
     dataset = DataSet('baba')

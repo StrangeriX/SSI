@@ -1,5 +1,5 @@
-from block_1.scripts.lab2.DecisionSystem import DecisionSystem
-from block_1.scripts.Chart import Chart
+from scripts.lab2.DecisionSystem import DecisionSystem
+from scripts.Chart import Chart
 
 
 def chart_samples():

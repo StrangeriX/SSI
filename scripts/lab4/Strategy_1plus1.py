@@ -2,7 +2,7 @@ import random
 import math
 import numpy as np
 from typing import Tuple
-from block_1.scripts.Chart import Chart
+from scripts.Chart import Chart
 
 
 class OnePlusOneStrategy:

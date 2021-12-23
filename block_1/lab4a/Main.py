@@ -1,4 +1,4 @@
-from block_1.scripts.lab4a.strategy_mu_plus_lambda import MuPlusLambdaStrategy
+from scripts.lab4a.strategy_mu_plus_lambda import MuPlusLambdaStrategy
 
 
 def main():

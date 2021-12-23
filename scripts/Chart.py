@@ -1,5 +1,8 @@
 from typing import List, Tuple, Optional
 import matplotlib.pyplot as plot
+from matplotlib.colors import ListedColormap
+
+from scripts.bitmap import Bitmap
 import numpy as np
 
 
@@ -88,3 +91,8 @@ class Chart:
 
     def draw_face(self):
         pass
+
+    def draw_bitmap(self, bitmap: Bitmap):
+        array = np.array(bitmap.get_matrix())
+        cmapmine = ListedColormap(['w', 'black'], N=2)
+        plot.imshow(array, cmap=cmapmine, vmin=0, vmax=1)

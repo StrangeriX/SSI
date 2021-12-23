@@ -2,8 +2,8 @@ import numpy as np
 from typing import Tuple
 import copy
 import random
-from block_1.scripts.lab4a.sample import Sample
-from block_1.scripts.Chart import Chart
+from scripts.lab4a.sample import Sample
+from scripts.Chart import Chart
 
 
 class MuPlusLambdaStrategy:

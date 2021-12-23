@@ -1,6 +1,6 @@
 from typing import List, Tuple
 from .Row import Row
-from block_1.scripts.Chart import Chart
+from scripts.Chart import Chart
 
 
 class DecisionSystem:

@@ -1,4 +1,4 @@
-from block_1.scripts.lab4.Strategy_1plus1 import OnePlusOneStrategy
+from scripts.lab4.Strategy_1plus1 import OnePlusOneStrategy
 
 
 def main():
